@@ -29,7 +29,7 @@ menuDespliegue()
 
 //funcionamiento despliegue de barra buscadora
 
-
+//para hacer que el texto no se salga del contenedor con tailwind 
 
 
 // ============================================================================
@@ -43,8 +43,8 @@ function maquetadordeproductos() {
 
     articulos.forEach(articulo => {
         htmlString += `
-            <div class="tarjeta-contenedor bg-white p-4 rounded-2xl shadow flex flex-col gap-4 hover:-translate-y-1 hover:shadow-lg duration-200">
-                <a href="detalleProducto.html?id=${articulo.id}">
+            <div class="tarjeta-contenedor bg-white p-4 rounded-2xl shadow flex flex-col  gap-4 hover:-translate-y-1 hover:shadow-lg duration-200 overflow-x-auto">
+                <a href="detalleProducto.html?id=${articulo.id}" class="flex flex-col gap-2 h-full">
                     <img src="${articulo.img}" alt="${articulo.nombre}" class="w-full h-40 rounded-lg object-cover">
                     <h3 class="font-bold">${articulo.nombre}</h3>
                     <h3>⭐⭐⭐⭐⭐</h3>
@@ -246,7 +246,5 @@ document.addEventListener('DOMContentLoaded', () => {
     maquetadordeproductos();   // crea tarjetas
     ejecutarBusquedaInicial(); // ahora sí puede buscar
 });
-
-
 
 

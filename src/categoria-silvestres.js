@@ -32,7 +32,7 @@ function maquetadordeproductosS() {
                 </div>
 
                 <button id="btn-add-${articulo.id}" 
-                        onclick="agregarAlCarrito(${articulo.id})"
+                        
                         data-precio-elegido="${articulo.presentaciones[0].precio}"
                         data-presentacion-elegida="${articulo.presentaciones[0].nombre}"
                         class="w-full h-10 bg-lime-800/75 rounded text-amber-100 mt-auto">

@@ -24,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function renderizarDetalle(articulo, contenedor) {
     contenedor.innerHTML = `
-        <div class="bg-lime-800/50 flex flex-col sm:flex-row justify-between p-10 gap-4 items-center rounded-2xl">
-            <div class="border bg-white rounded-2xl contain-content hover:scale-105 hover:scale-z-300">
-                <img src="${articulo.img}" alt="${articulo.nombre}" class="h-80">
+        <div class="bg-lime-800/50 flex flex-col sm:flex-row h-full justify-between p-10 gap-4 items-center rounded-2xl">
+            <div class="border bg-white rounded-2xl contain-content object-cover md:h-3/4 hover:scale-105 hover:scale-z-300 w-full">
+                <img src="${articulo.img}" alt="${articulo.nombre}" class="h-auto rounded-2xl justify-center">
             </div>
 
-            <div class="flex flex-col bg-white p-4 w-full h-80 rounded-2xl justify-between border ">
+            <div class="flex flex-col  overflow-x-auto gap-4 bg-white p-4 w-full h-full rounded-2xl border ">
                 <h2 class="text-start font-bold text-2xl  uppercase p-4">${articulo.nombre}</h2>
                 <article class="bg-white rounded-2xl text-black text-lg p-4">
                     <p class="text-start">
@@ -37,7 +37,7 @@ function renderizarDetalle(articulo, contenedor) {
                     </p>
                 </article>
 
-                 <div class="flex w-full  mt-2 gap-4" id="grupo-botones-${articulo.id}">
+                 <div class="flex flex-col sm:flex-row  w-full  mt-2 gap-4" id="grupo-botones-${articulo.id}">
                     <button onclick="seleccionarOpcion(${articulo.id}, ${articulo.presentaciones[0].precio}, this)" 
                             class="boton-opcion bg-lime-800 text-white rounded px-2 py-1">
                         ${articulo.presentaciones[0].nombre}
@@ -53,7 +53,7 @@ function renderizarDetalle(articulo, contenedor) {
                         onclick="agregarAlCarrito(${articulo.id})"
                         data-precio-elegido="${articulo.presentaciones[0].precio}"
                         data-presentacion-elegida="${articulo.presentaciones[0].nombre}"
-                        class="w-full h-10 bg-lime-800/75 rounded text-amber-100 mt-auto">
+                        class="w-full h-3/4 md:h-1/3 bg-lime-800/75 rounded text-amber-100 mt-auto p-2 text-center contain-content">
                     Agregar al carrito
                 </button>
             </div>

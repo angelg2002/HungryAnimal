@@ -32,11 +32,11 @@
                     ¡Encuentra de todo <br> para tu mascota!
                 </h2>
 
-                <form class="flex flex-col gap-6">
+                <form class="flex flex-col gap-6" id="formulario-login">
                     <div>
                         <p class="font-bold text-amber-700 mb-2">Correo</p>
-                        <input type="text" placeholder="Correo"
-                            class="w-full h-10 p-3 rounded bg-amber-50 border border-amber-700">
+                        <input type="email" placeholder="Correo" id="correos"
+                            class="w-full h-10 p-3 rounded bg-amber-50 border border-amber-700" required>
                     </div>
 
                     <div>
@@ -46,7 +46,7 @@
                     </div>
 
                     <button
-                        class="h-12 rounded-lg bg-lime-800/75 text-amber-100 font-bold hover:bg-lime-800 transition">
+                        class="h-12 rounded-lg bg-lime-800/75 text-amber-100 font-bold hover:bg-lime-800 transition" type="submit">
                         Iniciar sesión
                     </button>
                     <div>
@@ -77,6 +77,7 @@
             </ul>
         </div>
     </footer>
+<script src="./src/login.js"></script>
 </body>
 
 </html>

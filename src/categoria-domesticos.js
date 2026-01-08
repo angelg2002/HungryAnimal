@@ -33,8 +33,7 @@ function maquetadordeproductosC() {
                     </button>
                 </div>
 
-                <button id="btn-add-${articulo.id}" 
-                        onclick="agregarAlCarrito(${articulo.id})"
+                <button id="btn-add-${articulo.id}"                        
                         data-precio-elegido="${articulo.presentaciones[0].precio}"
                         data-presentacion-elegida="${articulo.presentaciones[0].nombre}"
                         class="w-full h-10 bg-lime-800/75 rounded text-amber-100 mt-auto">
@@ -66,7 +65,7 @@ function activarBotonesCarrito() {
 
             try {
                 const datos = JSON.parse(localStorage.getItem('carrito'));
-                if (Array.isArray(datos)) carrito = datos;
+                if (Array.isArray(datos))  carrito = datos;
             } catch {}
 
             const indice = carrito.findIndex(p => p.id === articulo.id);
@@ -92,4 +91,4 @@ function activarBotonesCarrito() {
 
 
 document.addEventListener('DOMContentLoaded',
-    maquetadordeproductosC,)
+    maquetadordeproductosC) ;
