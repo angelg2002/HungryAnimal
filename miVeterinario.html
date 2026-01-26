@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <title>HungryAnimal</title>
 </head>
 
@@ -81,9 +82,9 @@
     <!--Página principal-->
     <main class="w-2/3 m-auto flex flex-col items-center" id="main-id">
         <ul class="flex flex-col md:flex-row p-4 md:p-8 gap-6 md:gap-10 m-4">
-            <li class="m-4 w-full "> <img src="./galery/resultado de mapa.png" alt=""
-                    class="border-4 border-lime-800/75 rounded-xl">
-            </li>
+            <li class="m-4 w-full h-96 md:h-128 relative"> 
+    <div id="map" class="w-full h-full rounded-xl border-4 border-lime-800/75 z-0"></div>
+</li>
             <li class="text-4xl font-bold p-8">
                 <p>La clínica más cernana</p>
                 <p class="mb-10">para tu <span class="text-amber-700 text-bold">lagartija</span> es:</p>
@@ -104,9 +105,12 @@
             </ul>
         </div>
     </footer>
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="src/datos.js"></script>
     <script src="src/storage.js"></script>
     <script src="./src/app.js"></script>
+    <script src="./src/mapa.js"></script>
+    
 </body>
 
 </html>

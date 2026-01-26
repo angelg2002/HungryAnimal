@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderizarDetalle(articulo, contenedor) {
     contenedor.innerHTML = `
         <div class="bg-lime-800/50 flex flex-col sm:flex-row h-full justify-between p-10 gap-4 items-center rounded-2xl">
-            <div class="border bg-white rounded-2xl contain-content object-cover md:h-3/4 hover:scale-105 hover:scale-z-300 w-full">
+            <div class="border bg-white rounded-2xl contain-content object-cover h-full background sm:h-3/4 hover:scale-105 hover:scale-z-300 w-full">
                 <img src="${articulo.img}" alt="${articulo.nombre}" class="h-auto rounded-2xl justify-center">
             </div>
 
@@ -104,8 +104,6 @@ window.seleccionarOpcion = (idProducto, precioNuevo, botonTocado) => {
     botonTocado.classList.add('bg-lime-800', 'text-white');
     botonTocado.classList.remove('text-lime-800');
 };
-
-
 
 
 

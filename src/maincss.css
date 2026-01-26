@@ -1,4 +1,16 @@
 @import "tailwindcss";
 
-@source "app.js, detalle.js";
+@source "app.js, detalle.js, mapa.js";
 
+/* Esto evita que las baldosas del mapa se separen o se vean cortadas */
+.leaflet-container img {
+    max-width: none !important;
+    max-height: none !important;
+}
+
+/* Asegura que el contenedor tenga dimensiones reales */
+#map {
+    display: block;
+    min-height: 100%;
+    min-width: 100%;
+}
