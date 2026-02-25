@@ -26,7 +26,7 @@ function menuDespliegue() {
 async function cargarProductosDesdeBackend() {
     try {
         // Ahora apunta a tu archivo local
-        const respuesta = await fetch('../productos.json');
+        const respuesta = await fetch('./frontend/productos.json');
         productosData = await respuesta.json();
 
         maquetadordeproductos(productosData);
