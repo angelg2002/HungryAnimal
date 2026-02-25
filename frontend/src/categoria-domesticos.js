@@ -6,7 +6,7 @@ let articulosDomesticos = [];
 // 1. CONEXIÓN: Carga los productos desde el JSON (igual que app.js)
 async function cargarProductosDomesticos() {
     try {
-        const respuesta = await fetch('./frontend/productos.json');
+        const respuesta = await fetch('../productos.json');
         const todosLosProductos = await respuesta.json();
 
         // Filtramos solo los domésticos
