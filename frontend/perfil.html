@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - HungryAnimal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-amber-50 min-h-screen">
+
+    <nav class="bg-amber-700 p-8 text-amber-100 font-bold shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl"><img src="./galery/HungryANimal fondopng.png" alt="HungryAnimal"
+                    class="w-48"></a>
+            <a href="index.html" class="hover:underline">Volver a la tienda</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-10 p-4">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-3xl font-bold text-lime-900 mb-6">Mi Cuenta</h1>
+
+            <div id="info-usuario">
+                <p class="text-gray-600 italic">Cargando tus datos...</p>
+            </div>
+            <div class="mt-10 border-t pt-6">
+                <p class="text-sm text-gray-500 mb-4">¿Ya no quieres ser parte de HungryAnimal?</p>
+                <button onclick="eliminarCuenta()"
+                    class="bg-white border-2 border-red-600 text-red-600 px-4 py-2 rounded-lg font-bold hover:bg-red-600 hover:text-white transition duration-300">
+                    Eliminar mi cuenta definitivamente
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+
+    <script src="./src/perfil.js"></script>
+</body>
+
+</html>
