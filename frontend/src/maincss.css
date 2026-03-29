@@ -2,6 +2,11 @@
 
 @source "app.js, detalle.js, mapa.js";
 
+/* ./src/maincss.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Esto evita que las baldosas del mapa se separen o se vean cortadas */
 .leaflet-container img {
     max-width: none !important;

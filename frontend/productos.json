@@ -54,7 +54,7 @@
             }
         ],
         "especie": "Conejo",
-        "categoria": "silvestre"
+        "categoria": "domestico"
     },
     {
         "id": 4,
@@ -149,7 +149,7 @@
             }
         ],
         "especie": "Conejo",
-        "categoria": "silvestre"
+        "categoria": "domestico"
     },
     {
         "id": 9,

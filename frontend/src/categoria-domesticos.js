@@ -3,19 +3,26 @@ console.log('el maquetador de domesticos se está leyendo');
 // Variable global para guardar los productos domésticos
 let articulosDomesticos = [];
 
-// 1. CONEXIÓN: Carga los productos desde el JSON (igual que app.js)
+// 1. CONEXIÓN: Carga los productos con fallback a JSON local
 async function cargarProductosDomesticos() {
     try {
-        const respuesta = await fetch('../productos.json');
+        const respuesta = await fetch('http://localhost:3000/api/productos');
+        if (!respuesta.ok) throw new Error('Backend no disponible');
         const todosLosProductos = await respuesta.json();
-
-        // Filtramos solo los domésticos
         articulosDomesticos = todosLosProductos.filter(articulo => articulo.categoria === 'domestico');
-
-        maquetadordeproductosC(articulosDomesticos);
     } catch (error) {
-        console.error("Error al cargar productos domésticos:", error);
+        console.warn("Backend no disponible, cargando desde productos.json local:", error.message);
+        try {
+            const respuestaLocal = await fetch('./productos.json');
+            const todosLosProductos = await respuestaLocal.json();
+            articulosDomesticos = todosLosProductos.filter(articulo => articulo.categoria === 'domestico');
+        } catch (errorLocal) {
+            console.error("Error al cargar productos.json local:", errorLocal);
+            return;
+        }
     }
+
+    maquetadordeproductosC(articulosDomesticos);
 }
 
 // 2. MAQUETACIÓN (Ahora recibe los artículos por parámetro)

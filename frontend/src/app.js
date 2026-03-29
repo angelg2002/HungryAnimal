@@ -22,18 +22,26 @@ function menuDespliegue() {
     });
 }
 
-// 2. CONEXIÓN AL BACKEND (NUEVA FUNCIÓN)
+// 2. CONEXIÓN AL BACKEND con fallback a productos.json local
 async function cargarProductosDesdeBackend() {
     try {
-        // Ahora apunta a tu archivo local
-        const respuesta = await fetch('../productos.json');
+        // Intenta primero el backend en Node.js
+        const respuesta = await fetch('http://localhost:3000/api/productos');
+        if (!respuesta.ok) throw new Error('Backend no disponible');
         productosData = await respuesta.json();
-
-        maquetadordeproductos(productosData);
-        ejecutarBusquedaInicial();
     } catch (error) {
-        console.error("Error al cargar el JSON local:", error);
+        console.warn("Backend no disponible, cargando desde productos.json local:", error.message);
+        try {
+            const respuestaLocal = await fetch('./productos.json');
+            productosData = await respuestaLocal.json();
+        } catch (errorLocal) {
+            console.error("Error al cargar productos.json local:", errorLocal);
+            return;
+        }
     }
+
+    maquetadordeproductos(productosData);
+    ejecutarBusquedaInicial();
 }
 
 // 3. MAQUETACIÓN (MODIFICADO: Ahora recibe los artículos por parámetro)
@@ -141,6 +149,13 @@ function fBuscador() {
     if (!inputB) return;
     const nombreB = inputB.value.trim().toLowerCase();
     let contador = 0;
+
+    // Redirigir a index.html si no estamos en la página principal
+    const isIndex = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/HungryAnimal%20componentes/frontend/');
+    if (!isIndex && nombreB !== '') {
+        window.location.href = `index.html?buscar=${encodeURIComponent(nombreB)}`;
+        return;
+    }
 
     // Si el campo está vacío, mostramos todo y salimos
     if (nombreB === '') {
