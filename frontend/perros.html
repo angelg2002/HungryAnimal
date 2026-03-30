@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>HungryDomestico</title>
+    <title>HungryPerros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-orange-100 flex flex-col min-h-screen">
@@ -102,31 +103,23 @@
 
 
     <main class="items-center w-3/4 justify-between m-auto" id="main-id">
-        <section class="w-full flex gap-10 p-5 sm:flex-row ">
-            <div class="w-1/2 h-1/5">
-                <a href="perros.html">
-                    <img src="./galery/perroscool.png" alt="Productos para perros"
-                        class=" transition  rounded-3xl hover:scale-105 translate-1-x w-fullsm:w-34 md:w-3/4 lg:w-full cursor-pointer">
-                </a>
-            </div>
-            <div class="w-1/2 h-1/5">
-                <a href="gatos.html">
-                    <img src="./galery/gatos cool.png" alt="Productos para gatos"
-                        class=" transition rounded-3xl hover:scale-105 translate-1-x  w-full sm:w-3/4  md:w-3/4 lg:w-full cursor-pointer">
-                </a>
-            </div>
-        </section>
-
         <section>
-            <div class="justify-baseline m-4  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
-                id="contenedor-domesticos">
+            <div
+                class="bg-lime-800/90 rounded-3xl py-8 px-6 mb-12 mt-8 shadow-lg flex justify-center items-center border-4 border-lime-700/50">
+                <h1
+                    class="text-4xl md:text-5xl text-center font-extrabold text-amber-100 tracking-wider uppercase drop-shadow-md">
+                    Artículos para Perros
+                </h1>
+            </div>
+            <div class="justify-baseline m-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+                id="contenedor-perros">
 
             </div>
         </section>
 
     </main>
 
-    <footer class="flex justify-items-end  bg-amber-700 p-4 ">
+    <footer class="flex justify-items-end  bg-amber-700 p-4 mt-auto">
         <div class="text-shadow-yellow-50 w-full">
             <ul class="inline-flex px-4 justify-between w-full text-amber-100">
                 <li>© 2025 HungryAnimal</li>
@@ -140,7 +133,7 @@
     <script src="./src/app.js"></script>
     <script src="./src/carrito.js"></script>
     <script src="src/detalle.js"></script>
-    <script src="./src/categoria-domesticos.js"></script>
+    <script src="./src/categoria-perros.js"></script>
 </body>
 
 </html>
