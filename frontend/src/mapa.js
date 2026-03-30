@@ -1,7 +1,7 @@
 const colorAmber = '#b45309';
 
 const hungryIcon = L.divIcon({
-  className: "custom-pin transition transform hover:scale-110 duration-300",
+  className: 'custom-pin transition transform hover:scale-110 duration-300',
   // El HTML del SVG del pin
   html: `
     <div class="drop-shadow-lg drop-shadow-color-amber-500/50">
@@ -16,18 +16,18 @@ const hungryIcon = L.divIcon({
 });
 
 const map = L.map('map', {
-    zoomControl: false // Quitamos el control por defecto para moverlo abajo a la derecha
+  zoomControl: false // Quitamos el control por defecto para moverlo abajo a la derecha
 }).setView([4.6097, -74.0817], 14);
 
 L.control.zoom({
-    position: 'bottomright'
+  position: 'bottomright'
 }).addTo(map);
 
 // Cambio a un estilo de mapa más limpio y profesional (CartoDB Voyager)
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains: 'abcd',
 }).addTo(map);
 
 // Estilo del popup más moderno con las clases de Tailwind pre-existentes
@@ -38,16 +38,16 @@ const popupContent = `
     </div>
 `;
 
-L.marker([4.6097, -74.0817], {icon: hungryIcon}).addTo(map)
-    .bindPopup(popupContent, {
-        className: 'custom-professional-popup',
-        closeButton: false
-    })
-    .openPopup();
+L.marker([4.6097, -74.0817], { icon: hungryIcon }).addTo(map)
+  .bindPopup(popupContent, {
+    className: 'custom-professional-popup',
+    closeButton: false
+  })
+  .openPopup();
 
 // Un truco extra: disparar el redimensionado cuando la ventana cargue del todo
 window.addEventListener('load', () => {
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 500);
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 500);
 });

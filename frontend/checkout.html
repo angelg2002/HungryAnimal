@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>HungryAnimal - Checkout</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-orange-100 flex flex-col min-h-screen">
+    <header class="bg-amber-700 px-6 py-3 text-white flex gap-4">
+        <div class="flex md:flex-row items-center justify-between w-full gap-4">
+            <!--Logo de HungryAnimal-->
+            <div class="flex flex-col items-start">
+                <a href="index.html">
+                    <img src="./galery/HungryAnimal Fondo-png.png" alt="logo de HungryANimal"
+                        class="w-20 h-fit md:w-60">
+                </a>
+            </div>
+
+            <ul class=" hidden bg-amber-800 fixed h-screen z-50 flex-col top-0 left-0 w-64 gap-10 p-4 lg:relative lg:h-auto lg:p-0 lg:bg-transparent lg:w-full lg:flex lg:flex-row lg:gap-10"
+                id="menu-principal">
+                <button id="btn-cerrar" class="lg:hidden flex items-end text-white text-2xl p-4 self-end">X</button>
+                <div class="flex justify-start mr-2 gap-4 items-start flex-row ">
+                    <li class="direccion-lista lg:hidden hover:translate-x-1 hover:scale-105"><a href="login.html">
+                            <img src="./galery/mi perfil logo-Photoroom.png" alt="Perfil"
+                                class="w-16 transition transform hover:translate-x-1 hover:scale-105"></a>
+                    </li>
+                    <li class="direccion-lista lg:hidden md:justify-center hover:translate-x-1 hover:scale-105 ">
+                        <a href="#"><img src="./galery/notificaciones png.png" alt="notificaciones"
+                                class="w-16 transition transform"></a>
+                    </li>
+                </div>
+                <li class="transition transform hover:scale-105"><a href="index.html">Inicio</a></li>
+            </ul>
+
+            <button class="flex lg:hidden rounded-2xl font-normal w-12" id="menu-despliegue"><img
+                    src="./galery/icono-menu.png" alt="" class="h-fi"></button>
+            <!---Buscador-->
+
+            <!--Iconos de la derecha-->
+            <ul
+                class="lg:flex lg:flex-row gap-2 items-end justify-end lg:gap-6 lg:items-center md:justify-between order-2 lg:order-6">
+                <!--Icono de notificaciones-->
+                <li class="hidden lg:flex hover:translate-x-1 hover:scale-105"><a href="#">
+                        <img src="./galery/notificaciones png.png" alt="notificaciones"
+                            class="w-16 transition transform hover:translate-x-1 hover:scale-105"></a>
+                </li>
+                <!--Icono de perfil-->
+                <li class="hidden lg:flex hover:translate-x-1 hover:scale-105"><a href="login.html">
+                        <img src="./galery/mi perfil logo-Photoroom.png" alt="Perfil"
+                            class="w-16 transition transform hover:translate-x-1 hover:scale-105"></a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="w-11/12 max-w-7xl m-auto flex flex-col lg:flex-row gap-8 my-10 flex-grow" id="main-id">
+        <!-- Contenedor Completa tu Pago -->
+        <div class="w-full lg:w-3/5">
+            <div
+                class="bg-white rounded-[2rem] shadow-2xl border border-orange-200/50 p-8 md:p-12 h-full flex flex-col transition-all">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 tracking-tight">
+                    Finaliza tu <span class="text-amber-600">pago</span>
+                </h2>
+
+                <!-- Dirección Confirmada -->
+                <div class="mb-8" id="confirmed-address-container" style="display: none;">
+                    <div class="p-4 bg-orange-50 border border-lime-800/20 rounded-xl relative shadow-sm">
+                        <a href="direccion.html"
+                            class="absolute top-4 right-4 text-lime-700 hover:text-amber-700 text-sm font-bold underline"><i
+                                class="fas fa-edit"></i> Editar</a>
+                        <p class="font-bold text-gray-800 text-lg mb-1" id="display-address-name"></p>
+                        <p class="text-gray-600 font-medium" id="display-address-street"></p>
+                        <p class="text-gray-600 font-medium" id="display-address-city"></p>
+                    </div>
+                </div>
+
+                <form class="flex flex-col gap-8 flex-grow">
+                    <!-- Métodos de Pago -->
+                    <div>
+                        <h3 class="text-xl font-bold text-amber-800 mb-4 pb-2 border-b-2 border-amber-100"><i
+                                class="fas fa-wallet mr-2"></i> Método de pago</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label
+                                class="flex items-center p-4 border border-lime-800/20 rounded-xl cursor-pointer hover:bg-orange-50 transition-colors group">
+                                <input type="radio" name="payment-method" value="tarjeta"
+                                    class="w-5 h-5 text-amber-600 focus:ring-amber-500 checked:bg-amber-600" checked>
+                                <span class="ml-3 font-semibold text-gray-700 group-hover:text-amber-700"><i
+                                        class="fas fa-credit-card mr-2 text-lime-700"></i> Tarjeta Crédito /
+                                    Débito</span>
+                            </label>
+
+                            <label
+                                class="flex items-center p-4 border border-lime-800/20 rounded-xl cursor-pointer hover:bg-orange-50 transition-colors group">
+                                <input type="radio" name="payment-method" value="efectivo"
+                                    class="w-5 h-5 text-amber-600 focus:ring-amber-500">
+                                <span class="ml-3 font-semibold text-gray-700 group-hover:text-amber-700"><i
+                                        class="fas fa-money-bill-wave mr-2 text-lime-700"></i> Efectivo al
+                                    entregar</span>
+                            </label>
+
+                            <label
+                                class="flex items-center p-4 border border-lime-800/20 rounded-xl cursor-pointer hover:bg-orange-50 transition-colors group">
+                                <input type="radio" name="payment-method" value="pse"
+                                    class="w-5 h-5 text-amber-600 focus:ring-amber-500">
+                                <span class="ml-3 font-semibold text-gray-700 group-hover:text-amber-700"><i
+                                        class="fas fa-university mr-2 text-lime-700"></i> PSE (Transferencia)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preferencias de Entrega -->
+                    <div>
+                        <h3 class="text-xl font-bold text-amber-800 mb-4 pb-2 border-b-2 border-amber-100"><i
+                                class="fas fa-clock mr-2"></i> Preferencia de entrega</h3>
+                        <p class="text-sm text-gray-500 mb-4 font-medium">Programa tu orden para recibirla fresca y a
+                            tiempo. Las entregas inician a partir de 2 días.</p>
+
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="flex-1 relative group">
+                                <label
+                                    class="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-lime-700">Día
+                                    de entrega</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <i class="far fa-calendar-alt text-amber-600"></i>
+                                    </div>
+                                    <select id="delivery-date"
+                                        class="w-full pl-10 pr-5 py-4 bg-orange-50/50 border border-lime-800/20 rounded-xl appearance-none focus:outline-none focus:ring-2 focus:ring-lime-700/50 focus:border-transparent text-gray-800 font-semibold cursor-pointer shadow-sm">
+                                        <option value="" disabled selected>Selecciona una fecha</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                        <i class="fas fa-chevron-down text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex-1 relative group">
+                                <label
+                                    class="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-lime-700">Hora
+                                    aproximada</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <i class="far fa-clock text-amber-600"></i>
+                                    </div>
+                                    <select id="delivery-time"
+                                        class="w-full pl-10 pr-5 py-4 bg-orange-50/50 border border-lime-800/20 rounded-xl appearance-none focus:outline-none focus:ring-2 focus:ring-lime-700/50 focus:border-transparent text-gray-800 font-semibold cursor-pointer shadow-sm">
+                                        <option value="" disabled selected>Selecciona una hora</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                        <i class="fas fa-chevron-down text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-6">
+                        <button type="button"
+                            class="w-full bg-lime-800 text-white py-4 rounded-xl font-bold text-lg hover:bg-lime-900 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300"
+                            onclick="alert('¡Compra exitosa! Gracias por confiar en HungryAnimal.')">
+                            Pagar Ahora <i class="fas fa-lock ml-2 text-lime-200"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contenedor del Checkout (Sidebar resumen) -->
+        <div class="w-full lg:w-2/5">
+            <div
+                class="bg-gradient-to-br from-amber-50 to-orange-100/40 rounded-[2rem] shadow-xl border border-orange-200/50 h-full p-6 md:p-8 flex flex-col relative overflow-hidden">
+                <!-- Decoración -->
+                <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-lime-800/5 blur-2xl"></div>
+
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                    <i class="fas fa-shopping-cart text-lime-700"></i> Tu Pedido
+                </h3>
+
+                <div id="contenedor-checkout" class="flex-grow w-full space-y-4">
+                    <!-- Dinámico: checkout.js llenará esto -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="flex justify-items-end bg-amber-700 p-4 mt-auto w-full">
+        <div class="text-shadow-yellow-50 w-full">
+            <ul class="inline-flex px-4 justify-between w-full text-amber-100">
+                <li>© 2025 HungryAnimal</li>
+                <li>Nosotros</li>
+                <li>Información</li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="./src/datos.js"></script>
+    <script src="./src/storage.js"></script>
+    <script src="./src/app.js"></script>
+    <script src="./src/carrito.js"></script>
+    <script src="./src/checkout.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+name: Build Tailwind CSS
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    # We trigger the workflow when files that Tailwind cares about change
+    paths:
+      - 'frontend/**/*.html'
+      - 'frontend/**/*.js'
+      - 'frontend/src/maincss.css'
+      - 'frontend/package.json'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Build Tailwind CSS
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: Auto-build Tailwind CSS [skip ci]"
+          file_pattern: 'frontend/src/output.css'

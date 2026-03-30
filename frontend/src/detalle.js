@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const idABuscar = queryParams.get('id');
-    const articulo = articulos.find(p => p.id == idABuscar);
-    const contenedor = document.getElementById('contenedor-detalle');
+  const queryParams = new URLSearchParams(window.location.search);
+  const idABuscar = queryParams.get('id');
+  const articulo = articulos.find(p => p.id == idABuscar);
+  const contenedor = document.getElementById('contenedor-detalle');
 
-    if (!articulo) {
-        contenedor.innerHTML = `
+  if (!articulo) {
+    contenedor.innerHTML = `
             <div class="text-center py-20">
                 <img src="assets/img/lizard-search.png" class="mx-auto w-64 mb-6">
                 <h1 class="text-4xl font-bold text-amber-900">PRODUCTO NO ENCONTRADO</h1>
@@ -14,16 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 </a>
             </div>
         `;
-        return;
-    }
+    return;
+  }
 
-    renderizarDetalle(articulo, contenedor);
-    updatecirclecard();  // ← para mostrar el contador cuando se carga la página
+  renderizarDetalle(articulo, contenedor);
+  updatecirclecard();  // ← para mostrar el contador cuando se carga la página
 });
 
 
 function renderizarDetalle(articulo, contenedor) {
-    contenedor.innerHTML = `
+  contenedor.innerHTML = `
         <div class="bg-lime-800/50 flex flex-col sm:flex-row h-full justify-between p-10 gap-4 items-center rounded-2xl">
             <div class="border bg-white rounded-2xl contain-content object-cover h-full background sm:h-3/4 hover:scale-105 hover:scale-z-300 w-full">
                 <img src="${articulo.img}" alt="${articulo.nombre}" class="h-auto rounded-2xl justify-center">
@@ -60,49 +60,49 @@ function renderizarDetalle(articulo, contenedor) {
         </div>
     `;
 
-    const boton = document.getElementById(`btn-agregar-${articulo.id}`);
+  const boton = document.getElementById(`btn-agregar-${articulo.id}`);
 
-    boton.addEventListener('click', () => {
-        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  boton.addEventListener('click', () => {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-        const indice = carrito.findIndex(p => p.id === articulo.id);
+    const indice = carrito.findIndex(p => p.id === articulo.id);
 
-        if (indice !== -1) {
-            carrito[indice].cantidad++;
-        } else {
-            carrito.push({ ...articulo, cantidad: 1 });
-        }
+    if (indice !== -1) {
+      carrito[indice].cantidad++;
+    } else {
+      carrito.push({ ...articulo, cantidad: 1 });
+    }
 
-        localStorage.setItem('carrito', JSON.stringify(carrito));
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 
-        updatecirclecard(); // ← AHORA sí actualizará el icono inmediatamente
-    });
+    updatecirclecard(); // ← AHORA sí actualizará el icono inmediatamente
+  });
 }
 window.seleccionarOpcion = (idProducto, precioNuevo, botonTocado) => {
-    const etiquetaPrecio = document.getElementById(`precio-${idProducto}`);
-    if (etiquetaPrecio) {
-        etiquetaPrecio.innerText = `$${precioNuevo.toLocaleString()}`;
-    }
+  const etiquetaPrecio = document.getElementById(`precio-${idProducto}`);
+  if (etiquetaPrecio) {
+    etiquetaPrecio.innerText = `$${precioNuevo.toLocaleString()}`;
+  }
 
-    const btnAgregar = document.getElementById(`btn-add-${idProducto}`);
-    if (btnAgregar) {
-        // Guardamos el precio de la presentación seleccionada (ej: 55000)
-        btnAgregar.setAttribute('data-precio-elegido', precioNuevo);
+  const btnAgregar = document.getElementById(`btn-add-${idProducto}`);
+  if (btnAgregar) {
+    // Guardamos el precio de la presentación seleccionada (ej: 55000)
+    btnAgregar.setAttribute('data-precio-elegido', precioNuevo);
         
-        // Guardamos el nombre de la presentación (ej: '9KG')
-        const nombreOpcion = botonTocado.innerText;
-        btnAgregar.setAttribute('data-presentacion-elegida', nombreOpcion);
-    }
+    // Guardamos el nombre de la presentación (ej: '9KG')
+    const nombreOpcion = botonTocado.innerText;
+    btnAgregar.setAttribute('data-presentacion-elegida', nombreOpcion);
+  }
 
-    // 3. Lógica de colores de los botones (lo que ya tenías)
-    const contenedorBotones = document.getElementById(`grupo-botones-${idProducto}`);
-    const botones = contenedorBotones.querySelectorAll('.boton-opcion');
-    botones.forEach(btn => {
-        btn.classList.remove('bg-lime-800', 'text-white');
-        btn.classList.add('text-lime-800');
-    });
-    botonTocado.classList.add('bg-lime-800', 'text-white');
-    botonTocado.classList.remove('text-lime-800');
+  // 3. Lógica de colores de los botones (lo que ya tenías)
+  const contenedorBotones = document.getElementById(`grupo-botones-${idProducto}`);
+  const botones = contenedorBotones.querySelectorAll('.boton-opcion');
+  botones.forEach(btn => {
+    btn.classList.remove('bg-lime-800', 'text-white');
+    btn.classList.add('text-lime-800');
+  });
+  botonTocado.classList.add('bg-lime-800', 'text-white');
+  botonTocado.classList.remove('text-lime-800');
 };
 
 

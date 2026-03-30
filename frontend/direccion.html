@@ -7,9 +7,10 @@
     <link href="./src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>HungryAnimal</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body class="bg-orange-100">
+<body class="bg-orange-100 flex flex-col min-h-screen">
     <header class="bg-amber-700 px-6 py-3 text-white flex  gap-4">
         <div class="flex  md:flex-row items-center justify-between w-full gap-4">
 
@@ -44,7 +45,7 @@
                     </li>
                     <li class="transition transform hover:scale-105"><a href="ofertadeldia.html">Ofertas del dia</a>
                     </li>
-                    <li class="transition transform hover:scale-105"><a href="#">Foro</a></li>
+                    <li class="transition transform hover:scale-105"><a href="foro.html">Foro</a></li>
                     <li
                         class="direccion-lista  lg:hidden transition transform  hover:translate-x-1 hover:text-shadow-lime-800-100 duration-200">
                         <div
@@ -100,38 +101,82 @@
     </header>
 
     <!--Página principal-->
-    <main class="flex flex-col lg:w-
-    full lg:mx-auto min-h-screen lg:flex lg:flex-row lg:items-center lg:justify-center" id="main-id">
-        <div class="overflow-x-auto flex flex-col md:flex-row">
-
+    <main class="w-11/12 max-w-7xl m-auto flex flex-col lg:flex-row gap-8 my-10 flex-grow" id="main-id">
+        <!-- Contenedor del Formulario -->
+        <div class="w-full lg:w-3/5">
             <div
-                class=" w-full sm:w-3/4  justify-center  sm:m-auto  lg:w-full lg:items-center lg:justify-center lg:m-20">
-                <h2 class="text-4xl font-bold mb-10 text-amber-700">Confirma tu dirección de entrega</h2>
+                class="bg-white rounded-[2rem] shadow-2xl border border-orange-200/50 p-8 md:p-12 h-full flex flex-col">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 tracking-tight">
+                    Confirma tu dirección de <span class="text-amber-600">entrega</span>
+                </h2>
 
-                <form class="bg-white w-full flex flex-col items-center relative p-10 justify-center
-         gap-10 border-4 border-lime-800/75 ">
+                <form id="address-form" class="flex flex-col gap-6 flex-grow">
+                    <div class="relative group">
+                        <label
+                            class="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-lime-700">Datos
+                            de envío</label>
+                        <input type="text" id="address-street" placeholder="Ej. Calle 123 #45-67" required
+                            class="w-full px-5 py-4 bg-orange-50/50 border border-lime-800/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-700/50 focus:border-transparent transition-all duration-300 text-gray-800 font-medium placeholder-gray-400">
+                    </div>
 
-                    <input type="text" placeholder="Datos de envío"
-                        class="border-2 border-lime-800/75 rounded-lg w-full p-4">
-                    <input type="text" placeholder="Ciudad" class="border-2 border-lime-800/75 rounded-lg w-full p-4">
-                    <input type="text" placeholder="nombre del remitente"
-                        class="border-2 border-lime-800/75 rounded-lg w-full p-4">
-                    <ul class="flex flex-col-2 gap-4 font-bold text-amber-700 underline">
-                        <li>editar dirección</li>
-                        <li>agregar indicaciones</li>
+                    <div class="relative group">
+                        <label
+                            class="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-lime-700">Ciudad</label>
+                        <input type="text" id="address-city" placeholder="Ej. Bogotá" required
+                            class="w-full px-5 py-4 bg-orange-50/50 border border-lime-800/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-700/50 focus:border-transparent transition-all duration-300 text-gray-800 font-medium placeholder-gray-400">
+                    </div>
+
+                    <div class="relative group">
+                        <label
+                            class="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-lime-700">Nombre
+                            del remitente</label>
+                        <input type="text" id="address-name" placeholder="Ej. Juan Pérez" required
+                            class="w-full px-5 py-4 bg-orange-50/50 border border-lime-800/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-700/50 focus:border-transparent transition-all duration-300 text-gray-800 font-medium placeholder-gray-400">
+                    </div>
+
+                    <ul class="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-6 font-semibold text-amber-700">
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 hover:text-amber-800 transition-colors group decoration-2 underline-offset-4 hover:underline">
+                                <i class="fas fa-edit text-lime-700 group-hover:scale-110 transition-transform"></i>
+                                Editar dirección
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 hover:text-amber-800 transition-colors group decoration-2 underline-offset-4 hover:underline">
+                                <i
+                                    class="fas fa-map-marker-alt text-lime-700 group-hover:scale-110 transition-transform"></i>
+                                Agregar indicaciones
+                            </a>
+                        </li>
+                    </ul>
                 </form>
+                <button type="submit" form="address-form"
+                    class="w-full bg-lime-800 text-white mt-6 py-3 rounded-xl font-bold hover:bg-lime-900 transition">
+                    Confirmar dirección
+                </button>
             </div>
         </div>
 
-        <div class=" w-full sm:w-3/4 gap-10 sm:mr-10 flex items-center justify-center border-4 border-lime-800/75">
-            <div class="bg-white w-full  p-6 shadow-2xl" id="contenedor-checkout">
+        <!-- Contenedor del Checkout -->
+        <div class="w-full lg:w-2/5">
+            <div
+                class="bg-gradient-to-br from-amber-50 to-orange-100/40 rounded-[2rem] shadow-xl border border-orange-200/50 h-full p-6 md:p-8 flex flex-col relative overflow-hidden">
+                <!-- Decoración -->
+                <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-lime-800/5 blur-2xl"></div>
 
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                    <i class="fas fa-shopping-bag text-lime-700"></i> Resumen de Compra
+                </h3>
 
+                <div id="contenedor-checkout" class="flex-grow w-full space-y-4">
+                    <!-- Dinámico: el js llenará esto -->
+                </div>
             </div>
-        </div>
         </div>
     </main>
-    <footer class="flex justify-items-end  bg-amber-700 p-4">
+    <footer class="flex justify-items-end bg-amber-700 p-4 mt-auto w-full">
         <div class="text-shadow-yellow-50 w-full">
             <ul class="inline-flex px-4 justify-between w-full text-amber-100">
                 <li>© 2025 HungryAnimal</li>

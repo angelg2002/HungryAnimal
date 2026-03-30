@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>HungryAnimal - Foro</title>
+    <!-- Incluye Tailwind CDN por si acaso -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-orange-100 flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-amber-700 px-6 py-3 text-white flex gap-4">
+        <div class="flex md:flex-row items-center justify-between w-full gap-4">
+            <!--Logo de HungryAnimal-->
+            <div class="flex flex-col items-start">
+                <a href="index.html">
+                    <img src="./galery/HungryAnimal Fondo-png.png" alt="logo de HungryAnimal"
+                        class="w-20 h-fit md:w-60">
+                </a>
+            </div>
+
+            <!--Menu principal-->
+            <ul class="hidden bg-amber-800 fixed h-screen z-50 flex-col top-0 left-0 w-64 gap-10 p-4 lg:relative lg:h-auto lg:p-0 lg:bg-transparent lg:w-full lg:flex lg:flex-row lg:gap-10"
+                id="menu-principal">
+                <button id="btn-cerrar" class="lg:hidden flex items-end text-white text-2xl p-4 self-end">X</button>
+                <div class="flex justify-start mr-2 gap-4 items-start flex-row ">
+                    <li class="direccion-lista lg:hidden md:justify-center hover:translate-x-1 hover:scale-105 ">
+                        <a href="#"><img src="./galery/notificaciones png.png" alt="notificaciones"
+                                class="w-16 transition transform"></a>
+                    </li>
+                </div>
+                <li class="transition transform hover:scale-105"><a href="index.html">Inicio</a></li>
+                <!-- FORO subrayado por ser la página activa -->
+                <li class="transition transform hover:scale-105 underline decoration-2 underline-offset-4"><a
+                        href="foro.html">Foro</a></li>
+            </ul>
+
+            <button class="flex lg:hidden rounded-2xl font-normal w-12" id="menu-despliegue"><img
+                    src="./galery/icono-menu.png" alt="" class="h-fi"></button>
+
+            <!--Iconos de la derecha-->
+            <ul
+                class="lg:flex lg:flex-row gap-2 items-end justify-end lg:gap-6 lg:items-center md:justify-between order-2 lg:order-6">
+                <!--Icono de notificaciones-->
+                <li class="hidden lg:flex hover:translate-x-1 hover:scale-105"><a href="#">
+                        <img src="./galery/notificaciones png.png" alt="notificaciones"
+                            class="w-12 transition transform hover:translate-x-1 hover:scale-105"></a>
+                </li>
+                <!--Icono de perfil-->
+                <li class="hidden lg:flex hover:translate-x-1 hover:scale-105"><a href="login.html">
+                        <img src="./galery/mi perfil logo-Photoroom.png" alt="Perfil"
+                            class="w-12 transition transform hover:translate-x-1 hover:scale-105"></a>
+                </li>
+                <li class="justify-center flex hover:translate-x-1 hover:scale-105">
+                    <a href="carrito.html"><img src="./galery/carrito.png" alt="carrito"
+                            class="w-12 transition transform "></a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="w-11/12 max-w-7xl m-auto flex flex-col lg:flex-row gap-8 my-10 flex-grow" id="main-id">
+        <!-- Main Forum Feed (Izquierda) -->
+        <div class="w-full lg:w-2/3 flex flex-col gap-6 ">
+            <div class="bg-white rounded-[2rem] shadow-xl border border-orange-200/50 p-6 md:p-10 h-full flex flex-col">
+                <div
+                    class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b-2 border-amber-100 pb-6 gap-4">
+                    <h2 class="text-3xl font-extrabold text-gray-800 tracking-tight">
+                        Discusión <span class="text-amber-600">HungryAnimal</span>
+                    </h2>
+                    <div class="flex gap-2">
+                        <button
+                            class="px-4 py-2 bg-amber-100 text-amber-800 rounded-full font-bold text-sm hover:bg-amber-200 transition"><i
+                                class="fas fa-fire mr-1 text-red-500"></i> Hot</button>
+                        <button
+                            class="px-4 py-2 text-gray-500 hover:bg-gray-100 rounded-full font-bold text-sm transition"><i
+                                class="fas fa-certificate mr-1 text-lime-600"></i> Nuevos</button>
+                        <button
+                            class="px-4 py-2 text-gray-500 hover:bg-gray-100 rounded-full font-bold text-sm transition"><i
+                                class="fas fa-arrow-up mr-1 text-blue-500"></i> Top</button>
+                    </div>
+                </div>
+
+                <!-- Feed Posts -->
+                <div class="flex flex-col gap-6" id="forum-feed">
+
+                    <!-- Post 1 -->
+                    <div
+                        class="flex gap-4 p-5 border border-lime-800/10 rounded-2xl hover:border-lime-800/30 hover:shadow-lg transition-all cursor-pointer bg-gradient-to-r from-orange-50/30 to-white">
+                        <!-- Votos -->
+                        <div class="flex flex-col items-center gap-1 min-w-[40px] pt-1">
+                            <button class="text-gray-400 hover:text-amber-600 text-2xl transition-colors"><i
+                                    class="fas fa-caret-up"></i></button>
+                            <span class="font-bold text-gray-800 text-lg">142</span>
+                            <button class="text-gray-400 hover:text-red-500 text-2xl transition-colors"><i
+                                    class="fas fa-caret-down"></i></button>
+                        </div>
+                        <!-- Contenido -->
+                        <div class="flex flex-col flex-grow">
+                            <div class="text-xs text-gray-500 mb-2 flex items-center gap-2">
+                                <span class="font-bold text-amber-700 hover:underline">p/Gatos</span>
+                                <span class="text-gray-300">•</span>
+                                <span>Publicado por <span
+                                        class="hover:underline cursor-pointer text-gray-700">u/CatLover99</span> hace 4
+                                    horas</span>
+                            </div>
+                            <h3
+                                class="text-xl font-bold text-gray-900 mb-2 group-hover:text-lime-800 transition-colors">
+                                ¿Cuál es la mejor dieta para un gato con problemas renales?</h3>
+                            <p class="text-gray-600 text-sm line-clamp-3 mb-4 leading-relaxed">Mi veterinario me
+                                recomendó algunas marcas, pero he notado que no le gustan mucho. ¿Alguien tiene alguna
+                                experiencia preparando comida húmeda en casa que sea segura para los riñones? Agradezco
+                                mucho su ayuda.</p>
+                            <div class="flex gap-4 text-xs font-semibold text-gray-500 mt-auto">
+                                <span class="hover:bg-gray-100 px-3 py-2 rounded-lg transition"><i
+                                        class="far fa-comment-alt mr-1 text-lime-700"></i> 45 Comentarios</span>
+                                <span class="hover:bg-gray-100 px-3 py-2 rounded-lg transition"><i
+                                        class="fas fa-share mr-1 text-lime-700"></i> Compartir</span>
+                                <span class="hover:bg-gray-100 px-3 py-2 rounded-lg transition"><i
+                                        class="far fa-bookmark mr-1 text-lime-700"></i> Guardar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 -->
+                    <div
+                        class="flex gap-4 p-5 border border-lime-800/10 rounded-2xl hover:border-lime-800/30 hover:shadow-lg transition-all cursor-pointer bg-gradient-to-r from-orange-50/30 to-white">
+                        <!-- Votos -->
+                        <div class="flex flex-col items-center gap-1 min-w-[40px] pt-1">
+                            <button class="text-gray-400 hover:text-amber-600 text-2xl transition-colors"><i
+                                    class="fas fa-caret-up"></i></button>
+                            <span class="font-bold text-gray-800 text-lg">89</span>
+                            <button class="text-gray-400 hover:text-red-500 text-2xl transition-colors mb-auto"><i
+                                    class="fas fa-caret-down"></i></button>
+                        </div>
+                        <!-- Contenido -->
+                        <div class="flex flex-col flex-grow">
+                            <div class="text-xs text-gray-500 mb-2 flex items-center gap-2">
+                                <span class="font-bold text-lime-800 hover:underline">p/Reptiles</span>
+                                <span class="text-gray-300">•</span>
+                                <span>Publicado por <span
+                                        class="hover:underline cursor-pointer text-gray-700">u/LizzyFan</span> hace 6
+                                    horas</span>
+                            </div>
+                            <h3
+                                class="text-xl font-bold text-gray-900 mb-3 group-hover:text-lime-800 transition-colors">
+                                Mi iguana no quiere comer sus vegetales verdes, ayuda 🦎</h3>
+                            <div
+                                class="bg-gray-100 w-full h-48 rounded-xl mb-4 flex flex-col items-center justify-center text-gray-400 border border-gray-200 shadow-inner">
+                                <i class="fas fa-image text-3xl mb-2 text-gray-300"></i>
+                                <span class="text-xs">Iguana.jpg</span>
+                            </div>
+                            <div class="flex gap-4 text-xs font-semibold text-gray-500 mt-auto">
+                                <span class="hover:bg-gray-100 px-3 py-2 rounded-lg transition"><i
+                                        class="far fa-comment-alt mr-1 text-lime-700"></i> 12 Comentarios</span>
+                                <span class="hover:bg-gray-100 px-3 py-2 rounded-lg transition"><i
+                                        class="fas fa-share mr-1 text-lime-700"></i> Compartir</span>
+                                <span class="hover:bg-gray-100 px-3 py-2 rounded-lg transition"><i
+                                        class="far fa-bookmark mr-1 text-lime-700"></i> Guardar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post 3 -->
+                    <div
+                        class="flex gap-4 p-5 border border-lime-800/10 rounded-2xl hover:border-lime-800/30 hover:shadow-lg transition-all cursor-pointer bg-gradient-to-r from-orange-50/30 to-white">
+                        <!-- Votos -->
+                        <div class="flex flex-col items-center gap-1 min-w-[40px] pt-1">
+                            <button class="text-amber-600 text-2xl transition-colors"><i
+                                    class="fas fa-caret-up"></i></button>
+                            <span class="font-bold text-amber-700 text-lg">256</span>
+                            <button class="text-gray-400 hover:text-red-500 text-2xl transition-colors"><i
+                                    class="fas fa-caret-down"></i></button>
+                        </div>
+                        <!-- Contenido -->
+                        <div class="flex flex-col flex-grow">
+                            <div class="text-xs text-gray-500 mb-2 flex items-center gap-2">
+                                <span class="font-bold text-blue-600 hover:underline">p/NutricionGeneral</span>
+                                <span class="text-gray-300">•</span>
+                                <span>Publicado por <span
+                                        class="hover:underline cursor-pointer text-gray-700">u/VetExpert</span> hace 1
+                                    día</span>
+                                <span
+                                    class="bg-blue-100 text-blue-800 text-[10px] px-2 py-0.5 rounded-full font-bold ml-2">Moderador</span>
+                            </div>
+                            <h3
+                                class="text-xl font-bold text-gray-900 mb-2 group-hover:text-lime-800 transition-colors">
+                                Mitos comunes sobre darle comida casera a tus mascotas (Hilo) 🧵</h3>
+                            <p class="text-gray-600 text-sm line-clamp-3 mb-4 leading-relaxed">Como veterinario con 10
+                                años de experiencia, veo constantemente los mismos errores nutricionales. Aquí van las 5
+                                cosas que NUNCA debes darle a tus peludos, a pesar de lo que diga internet o tu vecino.
+                                Empecemos con el famoso mito del hueso cocido...</p>
+                            <div class="flex gap-4 text-xs font-semibold text-gray-500 mt-auto">
+                                <span class="hover:bg-gray-100 px-3 py-2 rounded-lg transition"><i
+                                        class="far fa-comment-alt mr-1 text-lime-700"></i> 210 Comentarios</span>
+                                <span class="hover:bg-gray-100 px-3 py-2 rounded-lg transition"><i
+                                        class="fas fa-share mr-1 text-lime-700"></i> Compartir</span>
+                                <span class="hover:bg-gray-100 px-3 py-2 rounded-lg transition"><i
+                                        class="far fa-bookmark mr-1 text-lime-700"></i> Guardar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cargar Más -->
+                <div class="mt-8 flex justify-center">
+                    <button
+                        class="px-8 py-3 bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold rounded-xl transition border border-amber-200 shadow-sm hover:shadow-md">
+                        Cargar más temas
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar (Derecha) -->
+        <div class="w-full lg:w-1/3 flex flex-col gap-6">
+            <!-- Crear Post Wrapper -->
+            <div
+                class="bg-gradient-to-br from-amber-50 to-orange-100/80 rounded-[2rem] shadow-xl border border-orange-200/50 p-8 flex flex-col relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-lime-800/10 blur-2xl z-0">
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-3 relative z-10">
+                    <i class="fas fa-paw text-amber-600"></i> Sobre este Foro
+                </h3>
+                <p class="text-gray-600 font-medium mb-6 relative z-10 text-sm leading-relaxed">
+                    El mejor lugar de internet para compartir experiencias, solicitar consejos y discutir sobre el
+                    cuidado de nuestras mascotas.
+                </p>
+                <div class="w-full border-t border-amber-200/60 mb-6 relative z-10"></div>
+                <div class="flex justify-between text-center mb-6 relative z-10 font-bold text-gray-800">
+                    <div>
+                        <p class="text-2xl">34k</p>
+                        <p class="text-xs text-gray-500 font-normal">Miembros</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl text-lime-700">238</p>
+                        <p class="text-xs text-gray-500 font-normal">En línea 🔥</p>
+                    </div>
+                </div>
+                <button onclick="alert('Funcionalidad de crear post en desarrollo')"
+                    class="w-full bg-lime-700 text-white py-3 rounded-xl font-bold text-lg hover:bg-lime-800 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300 relative z-10 flex items-center justify-center gap-2">
+                    <i class="fas fa-plus"></i> Crear publicación
+                </button>
+            </div>
+
+            <!-- Temas Populares -->
+            <div
+                class="bg-white rounded-[2rem] shadow-xl border border-orange-200/50 p-8 flex flex-col overflow-hidden">
+                <h3
+                    class="text-lg font-bold text-gray-400 mb-4 pb-2 border-b border-gray-100 uppercase tracking-widest text-xs">
+                    Comunidades Populares
+                </h3>
+                <ul class="flex flex-col gap-5 mt-2">
+                    <li class="flex items-center justify-between cursor-pointer group">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 text-lg shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                <i class="fas fa-dog"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-800 group-hover:text-blue-600 transition">p/Perros</p>
+                                <p class="text-xs text-gray-500 mt-0.5">12.4k miembros</p>
+                            </div>
+                        </div>
+                        <button
+                            class="px-4 py-1.5 bg-gray-50 text-gray-700 font-bold rounded-full text-xs hover:bg-lime-700 hover:text-white border border-gray-200 transition-colors">Unirse</button>
+                    </li>
+                    <li class="flex items-center justify-between cursor-pointer group">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 text-lg shadow-sm group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                                <i class="fas fa-cat"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-800 group-hover:text-orange-600 transition">p/Gatos</p>
+                                <p class="text-xs text-gray-500 mt-0.5">9.8k miembros</p>
+                            </div>
+                        </div>
+                        <button
+                            class="px-4 py-1.5 bg-gray-50 text-gray-700 font-bold rounded-full text-xs hover:bg-lime-700 hover:text-white border border-gray-200 transition-colors">Unirse</button>
+                    </li>
+                    <li class="flex items-center justify-between cursor-pointer group">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-green-50 border border-green-100 flex items-center justify-center text-green-600 text-lg shadow-sm group-hover:bg-green-600 group-hover:text-white transition-colors">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-800 group-hover:text-green-600 transition">p/Nutricion</p>
+                                <p class="text-xs text-gray-500 mt-0.5">5.2k miembros</p>
+                            </div>
+                        </div>
+                        <button
+                            class="px-4 py-1.5 bg-gray-50 text-gray-700 font-bold rounded-full text-xs hover:bg-lime-700 hover:text-white border border-gray-200 transition-colors">Unirse</button>
+                    </li>
+                    <li class="flex items-center justify-between cursor-pointer group">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 text-lg shadow-sm group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                                <i class="fas fa-dove"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-800 group-hover:text-purple-600 transition">p/Aves</p>
+                                <p class="text-xs text-gray-500 mt-0.5">2.1k miembros</p>
+                            </div>
+                        </div>
+                        <button
+                            class="px-4 py-1.5 bg-gray-50 text-gray-700 font-bold rounded-full text-xs hover:bg-lime-700 hover:text-white border border-gray-200 transition-colors">Unirse</button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Reglas Rápidas -->
+            <div class="bg-white rounded-[2rem] shadow-xl border border-orange-200/50 p-8 flex flex-col mt-auto">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center"><i
+                        class="fas fa-clipboard-list text-amber-600 mr-3 text-xl"></i> Reglas de la Comunidad</h3>
+                <ol class="list-none space-y-4 text-sm font-medium text-gray-700">
+                    <li class="flex gap-3"><span class="text-amber-600 font-black">1.</span> Mantén el respeto ante
+                        todo.</li>
+                    <li class="flex gap-3"><span class="text-amber-600 font-black">2.</span> Consulta siempre a un
+                        veterinario; sin diagnósticos médicos aquí.</li>
+                    <li class="flex gap-3"><span class="text-amber-600 font-black">3.</span> Cero tolerancia al spam.
+                    </li>
+                    <li class="flex gap-3"><span class="text-amber-600 font-black">4.</span> Asegúrate de poner el tema
+                        en la comunidad correcta.</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <footer class="flex justify-items-end bg-amber-700 p-4 mt-auto w-full">
+        <div class="text-shadow-yellow-50 w-full">
+            <ul class="inline-flex px-4 justify-between w-full text-amber-100">
+                <li>© 2025 HungryAnimal</li>
+                <li>Nosotros</li>
+                <li>Información</li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Dependencias de scripts principales -->
+    <script src="./src/app.js"></script>
+</body>
+
+</html>
