@@ -18,7 +18,7 @@ function resumenCompra() {
     <div class="flex flex-col gap-4">
 `;
 
-    
+
   carrito.forEach(item => {
     html += `
         <div class="overflow-x-auto flex flex-col sm:flex-row justify-between items-center bg-white p-4 rounded-xl border-2 border-lime-800/70 shadow ">
@@ -36,13 +36,8 @@ function resumenCompra() {
   const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
 
   html += `
-        <div class="w-full h-3/4 overflow-x-auto mt-8 p-6 bg-white text-lime-800/75 rounded-xl font-bold border">
+        <div class="w-full h-1/4 overflow-x-auto mt-8 p-6 bg-white text-lime-800/75 rounded-xl font-bold border">
             Total: $${total.toLocaleString()}
-        </div>
-        <div class="mt-6 text-center">
-            <button href="#" class="bg-amber-700 text-amber-100 px-6 py-3 rounded-xl text-xl mt-6">
-                Continuar con el envío
-            </button>
         </div>
     `;
 
@@ -74,7 +69,7 @@ function initAddressForm() {
       const street = document.getElementById('address-street').value.trim();
       const city = document.getElementById('address-city').value.trim();
       const name = document.getElementById('address-name').value.trim();
-            
+
       localStorage.setItem('hungryanimal_address', JSON.stringify({ street, city, name }));
       window.location.href = 'checkout.html';
     });
@@ -84,7 +79,7 @@ function initAddressForm() {
 function loadConfirmedAddress() {
   const container = document.getElementById('confirmed-address-container');
   if (!container) return;
-    
+
   const addressData = localStorage.getItem('hungryanimal_address');
   if (addressData) {
     const address = JSON.parse(addressData);
@@ -101,7 +96,7 @@ function loadConfirmedAddress() {
 function initDeliveryOptions() {
   const dateSelect = document.getElementById('delivery-date');
   const timeSelect = document.getElementById('delivery-time');
-    
+
   if (!dateSelect || !timeSelect) return;
 
   // Time frame starts 2 days from the actual day
@@ -112,16 +107,16 @@ function initDeliveryOptions() {
   for (let i = 0; i < 7; i++) {
     const d = new Date(startDate);
     d.setDate(startDate.getDate() + i);
-        
+
     const option = document.createElement('option');
     option.value = d.toISOString().split('T')[0];
-        
+
     // Formatear: ej. "Miércoles, 1 de noviembre"
     const formatter = new Intl.DateTimeFormat('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
     let dateString = formatter.format(d);
     // Capitalizar primera letra
     dateString = dateString.charAt(0).toUpperCase() + dateString.slice(1);
-        
+
     option.textContent = dateString;
     dateSelect.appendChild(option);
   }
@@ -138,7 +133,7 @@ function initDeliveryOptions() {
     '04:00 PM - 05:00 PM',
     '05:00 PM - 06:00 PM',
   ];
-    
+
   hours.forEach(hourBlock => {
     const option = document.createElement('option');
     option.value = hourBlock;
