@@ -118,6 +118,12 @@ window.agregarAlCarrito = (id) => {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
   const indice = carrito.findIndex(p => p.id === id && p.presentacionElegida === presentacion);
 
+  const cantidadActual = indice !== -1 ? carrito[indice].cantidad : 0;
+  if (cantidadActual >= articuloOriginal.stock) {
+    alert(`¡Lo sentimos! Solo hay ${articuloOriginal.stock} unidades disponibles en stock.`);
+    return;
+  }
+
   if (indice !== -1) {
     carrito[indice].cantidad++;
   } else {
@@ -127,7 +133,8 @@ window.agregarAlCarrito = (id) => {
       img: articuloOriginal.img,
       precio: precio,
       presentacionElegida: presentacion,
-      cantidad: 1
+      cantidad: 1,
+      stock: articuloOriginal.stock
     });
   }
 

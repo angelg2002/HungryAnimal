@@ -40,6 +40,12 @@ window.agregarAlCarrito = function(id) {
   // Buscamos si ya existe el combo (ID + PRESENTACIÓN)
   const existe = carrito.find(p => p.id === id && p.presentacion === presentacionFinal);
 
+  const cantidadActual = existe ? existe.cantidad : 0;
+  if (cantidadActual >= productoBase.stock) {
+    alert(`¡Lo sentimos! Solo hay ${productoBase.stock} unidades disponibles en stock.`);
+    return;
+  }
+
   if (existe) {
     existe.cantidad++;
   } else {
@@ -47,7 +53,8 @@ window.agregarAlCarrito = function(id) {
       ...productoBase,
       precio: precioFinal,
       presentacion: presentacionFinal,
-      cantidad: 1
+      cantidad: 1,
+      stock: productoBase.stock
     });
   }
 

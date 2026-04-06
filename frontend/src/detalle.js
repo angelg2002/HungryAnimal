@@ -61,22 +61,29 @@ function renderizarDetalle(articulo, contenedor) {
     `;
 
   const boton = document.getElementById(`btn-agregar-${articulo.id}`);
-
-  boton.addEventListener('click', () => {
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-    const indice = carrito.findIndex(p => p.id === articulo.id);
-
-    if (indice !== -1) {
-      carrito[indice].cantidad++;
-    } else {
-      carrito.push({ ...articulo, cantidad: 1 });
-    }
-
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    updatecirclecard(); // ← AHORA sí actualizará el icono inmediatamente
-  });
+  if (boton) {
+    boton.addEventListener('click', () => {
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  
+      const indice = carrito.findIndex(p => p.id === articulo.id);
+  
+      const cantidadActual = indice !== -1 ? carrito[indice].cantidad : 0;
+      if (cantidadActual >= articulo.stock) {
+        alert(`¡Lo sentimos! Solo hay ${articulo.stock} unidades disponibles en stock.`);
+        return;
+      }
+  
+      if (indice !== -1) {
+        carrito[indice].cantidad++;
+      } else {
+        carrito.push({ ...articulo, cantidad: 1, stock: articulo.stock });
+      }
+  
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+  
+      updatecirclecard(); // ← AHORA sí actualizará el icono inmediatamente
+    });
+  }
 }
 window.seleccionarOpcion = (idProducto, precioNuevo, botonTocado) => {
   const etiquetaPrecio = document.getElementById(`precio-${idProducto}`);

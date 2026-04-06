@@ -10,7 +10,8 @@ const articulos = [
       {nombre:'9KG', precio: 70000}
     ],
     especie: 'Perro',
-    categoria: 'domestico'
+    categoria: 'domestico',
+    stock: 25
   },
   {
     id: 2,
@@ -23,7 +24,8 @@ const articulos = [
       {nombre:'9KG', precio: 65000}
     ],
     especie: 'Gato',
-    categoria: 'domestico'
+    categoria: 'domestico',
+    stock: 25
   },
   {
     id: 3,
@@ -36,7 +38,8 @@ const articulos = [
       {nombre:'9KG', precio: 55000}
     ],
     especie:'Conejo',
-    categoria: 'silvestre'
+    categoria: 'silvestre',
+    stock: 25
   },
   {
     id: 4,
@@ -49,7 +52,8 @@ const articulos = [
       {nombre:'9KG', precio: 95000}
     ],
     especie:'Serpiente',
-    categoria: 'silvestre'
+    categoria: 'silvestre',
+    stock: 25
   },
   {
     id: 5,
@@ -62,7 +66,8 @@ const articulos = [
       {nombre:'En Combo', precio: 155000}
     ],
     especie:'Hurón',
-    categoria: 'silvestre'
+    categoria: 'silvestre',
+    stock: 25
   },
   {
     id: 6,
@@ -75,7 +80,8 @@ const articulos = [
       {nombre:'9KG', precio: 55000}
     ],
     especie: 'Perro',
-    categoria: 'domestico'
+    categoria: 'domestico',
+    stock: 25
   },
   {
     id: 7,
@@ -88,7 +94,8 @@ const articulos = [
       {nombre:'9KG', precio: 55000}
     ],
     especie: 'Gato',
-    categoria: 'domestico'
+    categoria: 'domestico',
+    stock: 25
   },
   {
     id: 8,
@@ -101,7 +108,8 @@ const articulos = [
       {nombre:'9KG', precio: 55000}
     ],
     especie:'Conejo',
-    categoria: 'silvestre'
+    categoria: 'silvestre',
+    stock: 25
   },
   {
     id: 9,
@@ -114,7 +122,8 @@ const articulos = [
       {nombre:'9KG', precio: 55000}
     ],
     especie:'Serpiente',
-    categoria: 'silvestre'
+    categoria: 'silvestre',
+    stock: 25
   },
   {
     id: 10,
@@ -127,7 +136,8 @@ const articulos = [
       {nombre:'En Combo', precio: 155000}
     ],
     especie:'Hurón',
-    categoria: 'silvestre'
+    categoria: 'silvestre',
+    stock: 25
   }
 
 ];

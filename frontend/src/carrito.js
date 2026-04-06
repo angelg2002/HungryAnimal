@@ -80,8 +80,15 @@ document.addEventListener('DOMContentLoaded', renderizarCarrito());
 window.cambiarCantidad = (index, cambio) => {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
+  // Verificamos si la nueva cantidad excede el stock
+  const nuevaCantidad = carrito[index].cantidad + cambio;
+  if (cambio > 0 && carrito[index].stock !== undefined && nuevaCantidad > carrito[index].stock) {
+    alert(`¡Lo sentimos! Solo hay ${carrito[index].stock} unidades disponibles en stock.`);
+    return;
+  }
+
   // Modificamos directamente el producto en esa posición
-  carrito[index].cantidad += cambio;
+  carrito[index].cantidad = nuevaCantidad;
 
   // Si la cantidad llega a 0, lo borramos automáticamente
   if (carrito[index].cantidad <= 0) {
