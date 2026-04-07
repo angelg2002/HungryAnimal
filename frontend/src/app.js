@@ -241,18 +241,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function configurarNavegacionPerfil() {
   const linkPerfil = document.getElementById('perfil-link');
+  // Asumimos que el botón de administración en el menú tiene el ID 'admin-link'
+  const linkAdmin = document.getElementById('admin-link');
   const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
 
-  if (!linkPerfil) return; // Si no hay icono en esta página, no hacemos nada
+  if (linkPerfil) {
+    if (usuarioActivo) {
+      // CASO 1: Ya inició sesión
+      linkPerfil.href = 'perfil.html';
+      console.log('Navegación configurada: Ir a Perfil');
+    } else {
+      // CASO 2: Usuario anónimo
+      linkPerfil.href = 'login.html';
+      console.log('Navegación configurada: Ir a Login');
+    }
+  }
 
-  if (usuarioActivo) {
-    // CASO 1: Ya inició sesión
-    linkPerfil.href = 'perfil.html';
-    console.log('Navegación configurada: Ir a Perfil');
-  } else {
-    // CASO 2: Usuario anónimo
-    linkPerfil.href = 'login.html';
-    console.log('Navegación configurada: Ir a Login');
+  // Verificamos si es administrador
+  if (linkAdmin) {
+    if (usuarioActivo && usuarioActivo.status === 'admin') {
+      linkAdmin.classList.remove('hidden'); // Muestra el botón de administrador
+    } else {
+      linkAdmin.classList.add('hidden'); // Oculta el botón de administrador
+    }
   }
 }
 

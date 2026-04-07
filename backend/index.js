@@ -54,6 +54,31 @@ app.get('/api/productos', async (req, res) => {
   }
 });
 
+// Ruta POST para el login de usuarios
+app.post('/api/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Por favor, proporciona email y contraseña.' });
+    }
+
+    const collection = db.collection('users');
+    // Buscamos al usuario por su email
+    const user = await collection.findOne({ email: email });
+
+    if (!user || user.password !== password) {
+      return res.status(401).json({ error: 'Credenciales incorrectas. Verifica tu email y contraseña.' });
+    }
+
+    // Si es correcto, devolvemos los datos (sin enviar la contraseña de vuelta)
+    res.json({ nombre: user.nombre, email: user.email, status: user.status || 'user' });
+  } catch (error) {
+    console.error('Error en el login:', error);
+    res.status(500).json({ error: 'Hubo un error al procesar el login.' });
+  }
+});
+
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor de HungryAnimal escuchando en el puerto ${port}`);
