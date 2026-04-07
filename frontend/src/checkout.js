@@ -141,3 +141,57 @@ function initDeliveryOptions() {
     timeSelect.appendChild(option);
   });
 }
+
+async function procesarPago() {
+  try {
+      // 1. Obtener usuario y carrito
+      const usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+      // Validaciones iniciales
+      if (!usuarioActivo || !usuarioActivo.id) {
+          alert('Debes iniciar sesión para realizar la compra.');
+          window.location.href = 'login.html';
+          return;
+      }
+
+      if (carrito.length === 0) {
+          alert('Tu carrito está vacío. Agrega productos antes de pagar.');
+          return;
+      }
+
+      // 2. Calcular total de la compra
+      const totalCompra = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+
+      // 3. Preparar los datos de la orden
+      const ordenData = {
+          usuarioId: Number(usuarioActivo.id),
+          productos: carrito,
+          total: totalCompra
+      };
+
+      // 4. Fetch (POST) al backend
+      const respuesta = await fetch('https://hungry-animal-api.onrender.com/api/ordenes', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(ordenData)
+      });
+
+      // 5. Manejar la respuesta
+      if (respuesta.status === 201) {
+          localStorage.removeItem('carrito');
+          window.location.href = 'pago-exitoso.html';
+      } else {
+          const data = await respuesta.json();
+          alert(`Error al procesar el pago: ${data.mensaje || 'Intenta nuevamente'}`);
+      }
+  } catch (error) {
+      console.error('Error procesando el pago:', error);
+      alert('Hubo un problema de conexión con el servidor. Inténtalo más tarde.');
+  }
+}
+
+// Exponemos la función al entorno global (window)
+window.procesarPago = procesarPago;
