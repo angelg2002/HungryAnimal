@@ -26,7 +26,7 @@ function menuDespliegue() {
 async function cargarProductosDesdeBackend() {
   try {
     // Intenta primero el backend en Node.js
-    const respuesta = await fetch('http://localhost:3000/api/productos');
+    const respuesta = await fetch('https://hungry-animal-api.onrender.com');
     if (!respuesta.ok) throw new Error('Backend no disponible');
     productosData = await respuesta.json();
   } catch (error) {
