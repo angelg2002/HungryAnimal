@@ -6,7 +6,7 @@ let articulosSilvestres = [];
 // 1. CONEXIÓN: Carga los productos con fallback a JSON local
 async function cargarProductosSilvestres() {
   try {
-    const respuesta = await fetch('http://localhost:3000/api/productos');
+    const respuesta = await fetch('https://hungry-animal-api.onrender.com/api/productos');
     if (!respuesta.ok) throw new Error('Backend no disponible');
     const todosLosProductos = await respuesta.json();
     articulosSilvestres = todosLosProductos.filter(articulo => articulo.categoria === 'silvestre');
