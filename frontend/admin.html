@@ -9,6 +9,15 @@
     <link rel="icon" href="./galery/carrito.png">
     <title>HungryAnimal - Admin Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script>
+        // RUTINA DE SEGURIDAD: Verificar status "admin" inmediatamente
+        const usuario = JSON.parse(localStorage.getItem('usuarioActivo'));
+        
+        if (!usuario || usuario.status !== 'admin') {
+            alert('Acceso Denegado. No tienes permisos para ver esta página.');
+            window.location.replace('index.html'); // Usamos replace para que no puedan volver atrás
+        }
+    </script>
 </head>
 
 <body class="bg-orange-100 flex flex-col min-h-screen">

@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Si llegamos aquí, el usuario es real. ¡Pintamos sus datos!
   mostrarDatos(usuarioActivo);
+  cargarHistorial(usuarioActivo.id); // <--- Llamamos a la nueva función
 });
 
 function mostrarDatos(user) {
@@ -27,6 +28,41 @@ function mostrarDatos(user) {
             </button>
         </div>
     `;
+}
+
+// NUEVA FUNCIÓN: Obtener y renderizar el historial del backend
+async function cargarHistorial(userId) {
+  const contenedor = document.getElementById('historial-pedidos');
+  if (!contenedor) return;
+
+  try {
+    const respuesta = await fetch(`https://hungry-animal-api.onrender.com/api/ordenes/${Number(userId)}`);
+    if (!respuesta.ok) throw new Error('Error de conexión al cargar órdenes');
+    
+    const pedidos = await respuesta.json();
+
+    if (pedidos.length === 0) {
+      contenedor.innerHTML = `<p class="text-gray-500 italic">Aún no has realizado ninguna compra.</p>`;
+      return;
+    }
+
+    contenedor.innerHTML = pedidos.map(pedido => {
+      // Formateamos la fecha para que sea legible (Ej: "7 de abril de 2026")
+      const fechaFormateada = new Date(pedido.fecha).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      return `
+        <div class="bg-white p-4 rounded-xl shadow border border-lime-800/20 flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2">
+          <div>
+            <p class="font-bold text-amber-800">Pedido realizado el ${fechaFormateada}</p>
+            <p class="text-sm text-gray-600">${pedido.productos.length} variedad(es) de producto</p>
+          </div>
+          <p class="font-extrabold text-lime-700 text-xl">$${pedido.total.toLocaleString()}</p>
+        </div>
+      `;
+    }).join('');
+  } catch (error) {
+    console.error('Error al cargar historial:', error);
+    contenedor.innerHTML = `<p class="text-red-500">Lo sentimos, hubo un problema al obtener tus pedidos. Inténtalo luego.</p>`;
+  }
 }
 
 window.cerrarSesion = () => {
