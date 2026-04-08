@@ -71,45 +71,18 @@ app.post('/api/login', async (req, res) => {
       return res.status(401).json({ error: 'Credenciales incorrectas. Verifica tu email y contraseña.' });
     }
 
-    // Si es correcto, devolvemos los datos (sin enviar la contraseña de vuelta)
-    res.json({ nombre: user.nombre, email: user.email, status: user.status || 'user' });
+    // Si es correcto, devolvemos TODOS los datos necesarios para el perfil
+    res.json({ 
+      id: user.id, 
+      nombre: user.nombre, 
+      correo: user.email, 
+      mascota: user.mascota || 'Sin especificar',
+      status: user.status || 'user' 
+    });
   } catch (error) {
     console.error('Error en el login:', error);
     res.status(500).json({ error: 'Hubo un error al procesar el login.' });
   }
-});
-
-// RUTA DE LOGIN: Verifica las credenciales de los usuarios de HungryAnimal
-app.post('/api/login', async (req, res) => {
-    const { email, password } = req.body; // Recibimos lo que el usuario escribió en el formulario
-
-    try {
-        const db = client.db('hungry_db');
-        const usersCollection = db.collection('users');
-
-        // 1. Buscar si el correo existe en nuestra lista de 10 usuarios
-        const user = await usersCollection.findOne({ email: email });
-
-        if (!user) {
-            return res.status(404).json({ mensaje: "El correo no está registrado" });
-        }
-
-        // 2. Comparar la contraseña (texto plano por ahora)
-        if (user.password === password) {
-            // Si coincide, enviamos los datos (excepto el password por seguridad)
-            const { password, ...userData } = user;
-            res.json({
-                mensaje: "¡Bienvenido a HungryAnimal!",
-                user: userData
-            });
-        } else {
-            res.status(401).json({ mensaje: "Contraseña incorrecta" });
-        }
-
-    } catch (error) {
-        console.error("Error en el login:", error);
-        res.status(500).json({ mensaje: "Error interno del servidor" });
-    }
 });
 
 // RUTA DE REGISTRO: Crea nuevos usuarios en la base de datos
@@ -139,8 +112,14 @@ app.post('/api/registro', async (req, res) => {
 
         await usersCollection.insertOne(nuevoUsuario);
 
-        // 3. Respondemos con éxito y devolvemos los datos para hacer "auto-login"
-        res.status(201).json({ id: nuevoUsuario.id, nombre: nuevoUsuario.nombre, email: nuevoUsuario.email, status: nuevoUsuario.status });
+        // 3. Respondemos con éxito y devolvemos la misma estructura que en el login
+        res.status(201).json({ 
+            id: nuevoUsuario.id, 
+            nombre: nuevoUsuario.nombre, 
+            correo: nuevoUsuario.email, 
+            mascota: nuevoUsuario.mascota,
+            status: nuevoUsuario.status 
+        });
     } catch (error) {
         console.error("Error en el registro:", error);
         res.status(500).json({ error: "Hubo un error interno al crear la cuenta." });
