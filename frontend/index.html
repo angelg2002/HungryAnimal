@@ -114,9 +114,28 @@
 
 
             <Section class="w-full flex flex-col">
-                <div class="mb-6 bg-lime-800/75 rounded-b-2xl justify-items-center" id="banner">
-                    <img src="./galery/Banner de oferta.png" alt="oferta del día"
-                        class="rounded-b-lg justify-center p-4 ">
+                <div class="mb-6 bg-lime-800/75 rounded-b-2xl relative aspect-[16/9] md:aspect-[21/9] overflow-hidden group" id="banner">
+                    <div id="carousel" class="w-full h-full relative">
+                        <!-- Slide 1 -->
+                        <a href="ofertadeldia.html" class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10 p-4">
+                            <img src="./galery/Banner de oferta.png" alt="Oferta Principal" class="w-3/4  mx-auto h-full object-contain md:object-cover rounded-lg shadow-md">
+                        </a>
+                        <!-- Slide 2 -->
+                        <a href="ofertadeldia.html" class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 p-4">
+                            <img src="./galery/comida-para-perro-descuento.png" alt="Descuento Perros" class="w-3/4 mx-auto h-full object-contain md:object-cover rounded-lg shadow-md">
+                        </a>
+                        <!-- Slide 3 -->
+                        <a href="ofertadeldia.html" class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 p-4">
+                            <img src="./galery/comida-para-serpiente.png" alt="Oferta Serpientes" class="w-3/4 mx-auto h-full object-contain md:object-cover rounded-lg shadow-md">
+                        </a>
+                    </div>
+                    
+                    <!-- Controles de navegación (Puntitos) -->
+                    <div class="absolute bottom-6 left-0 right-0 flex justify-center gap-3 z-20">
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-lime-800 transition-colors shadow-sm cursor-pointer"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-lime-800/40 hover:bg-lime-800/60 transition-colors shadow-sm cursor-pointer"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-lime-800/40 hover:bg-lime-800/60 transition-colors shadow-sm cursor-pointer"></button>
+                    </div>
                 </div>
             </Section>
             <!--Productos -->
@@ -145,6 +164,7 @@
     <script src="./src/datos.js"></script>
     <script src="./src/storage.js"></script>
     <script src="./src/app.js"></script>
+    <script src="./src/offers.js"></script>
 
 </body>
 
