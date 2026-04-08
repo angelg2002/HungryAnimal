@@ -1,29 +1,35 @@
 const registroForm = document.getElementById('form-registro');
 
-registroForm.addEventListener('submit', (e) => {
+registroForm.addEventListener('submit', async (e) => {
   e.preventDefault(); // Detenemos el envío para que no se recargue la página
 
-  // Capturamos los valores igual que en tu clase de DOM
-  const nuevoUsuario = {
-    id: Date.now(), // Un ID único basado en el tiempo
-    nombre: document.getElementById('reg-nombre').value,
-    apellido: document.getElementById('reg-apellido').value,
-    mascota: document.getElementById('reg-tipo-mascota').value,
-    correo: document.getElementById('reg-correo').value,
-    pass: document.getElementById('reg-pass').value
-  };
+  // 1. Capturamos los valores del formulario
+  const nombre = document.getElementById('reg-nombre').value;
+  const apellido = document.getElementById('reg-apellido').value;
+  const mascota = document.getElementById('reg-tipo-mascota').value;
+  const correo = document.getElementById('reg-correo').value;
+  const pass = document.getElementById('reg-pass').value;
 
-  // 1. Traer lo que ya existe en "la base de datos" (o un array vacío)
-  const baseDeDatos = JSON.parse(localStorage.getItem('usuarios')) || [];
+  try {
+    // 2. Enviamos los datos por POST a nuestro backend
+    const respuesta = await fetch('https://hungry-animal-api.onrender.com/api/registro', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, apellido, mascota, correo, pass })
+    });
 
-  // 2. Hacer el "Push" (Igual que en la To-Do List)
-  baseDeDatos.push(nuevoUsuario);
+    const data = await respuesta.json();
 
-  // 3. Guardar de nuevo en el LocalStorage
-  localStorage.setItem('usuarios', JSON.stringify(baseDeDatos));
-
-  alert(`¡Cuenta creada con éxito, ${  nuevoUsuario.nombre  }!`);
-
-  // Redirigimos al usuario a su perfil para que vea sus datos
-  window.location.href = 'perfil.html';
+    if (respuesta.status === 201) {
+        // 3. Auto-Login: Guardamos la sesión activa en LocalStorage
+        localStorage.setItem('usuarioActivo', JSON.stringify(data));
+        alert(`¡Cuenta creada con éxito, ${data.nombre}!`);
+        window.location.href = 'perfil.html';
+    } else {
+        alert(`Ops... ${data.error}`);
+    }
+  } catch (error) {
+      console.error('Error al intentar registrarse:', error);
+      alert('Hubo un problema de conexión con el servidor. Inténtalo más tarde.');
+  }
 });
